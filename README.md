@@ -15,11 +15,11 @@ To add or remove a member, or to change their role, change the sharing on the sh
 ## Setup
 
 1. **Sheet.** Row 1 of each tab holds column headers. List the tabs in `src/config.ts`.
-2. **Google Cloud.** In [Google Cloud Console](https://console.cloud.google.com/), create a project, enable the **Google Sheets API**, then configure the OAuth consent screen.
+2. **Google Cloud.** In [Google Cloud Console](https://console.cloud.google.com/), create a project, enable the **Google Sheets API** and the **Google Drive API**, then configure the OAuth consent screen.
    - If the association uses Google Workspace, choose **Internal**.
    - Otherwise leave the app in **Testing** and list each member under Test users (up to 100).
 3. **OAuth client.** Credentials, then Create credentials, then OAuth client ID, type **Web application**. Add `http://localhost:5173` and your production URL as Authorized JavaScript origins.
-4. **Environment.** Copy `.env.example` to `.env` and fill in the client ID and the spreadsheet ID (the long part of the sheet URL).
+4. **Environment.** Copy `.env.example` to `.env` and fill in the client ID and the spreadsheet ID (the long part of the sheet URL). To enable the Files tab, also set `VITE_DRIVE_FOLDER_ID` to the id at the end of the Drive folder URL. Share that folder with members the same way as the sheet.
 
 ```bash
 npm install
@@ -34,4 +34,5 @@ npm run dev
 
 - Access is per sheet, not per tab or row. Data that only some members may see belongs in a separate spreadsheet.
 - No audit log beyond the sheet's own version history.
-- Files in Drive (documents, receipts) are not handled yet.
+- The Files tab uses the full Drive scope, which Google marks as restricted. That is fine while the app is in Testing or Internal mode, but a public app would need Google's verification.
+- The Files tab can browse, upload, create folders and move files to the trash. Opening a file uses Drive's own viewer, so Drive permissions apply.

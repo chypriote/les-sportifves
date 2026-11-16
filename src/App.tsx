@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useAuth } from "./auth";
-import { CLIENT_ID, SPREADSHEET_ID, TABS } from "./config";
+import { CLIENT_ID, DRIVE_FOLDER_ID, SPREADSHEET_ID, TABS } from "./config";
+import { FilesView } from "./FilesView";
 import { TableView } from "./TableView";
+
+const FILES_TAB = "__files__";
 
 export function App() {
   const { user, ready, error, signIn, signOut } = useAuth();
@@ -36,7 +39,7 @@ export function App() {
       <header>
         <strong>Football Admin</strong>
         <nav>
-          {TABS.map((t) => (
+          {[...TABS, ...(DRIVE_FOLDER_ID ? [{ name: FILES_TAB, label: "Files" }] : [])].map((t) => (
             <button key={t.name} className={t.name === tab ? "active" : ""} onClick={() => setTab(t.name)}>
               {t.label}
             </button>
@@ -47,7 +50,7 @@ export function App() {
         </span>
       </header>
       <main>
-        <TableView key={tab} tab={tab} />
+        {tab === FILES_TAB ? <FilesView /> : <TableView key={tab} tab={tab} />}
       </main>
     </div>
   );

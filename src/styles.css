@@ -34,6 +34,9 @@ nav { display: flex; gap: 8px; flex: 1; }
 main { padding: 16px; }
 .toolbar { display: flex; gap: 8px; margin-bottom: 12px; }
 .toolbar input { flex: 1; max-width: 320px; }
+.crumbs { flex: 1; display: flex; flex-wrap: wrap; gap: 4px; }
+button.link { border: 0; padding: 0; color: var(--accent); }
+a { color: var(--accent); }
 .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
 table { border-collapse: collapse; width: 100%; }
 th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }

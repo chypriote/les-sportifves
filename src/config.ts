@@ -1,5 +1,7 @@
 export const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID as string;
 export const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID as string;
+// Optional: when set, a Files tab shows this Drive folder.
+export const DRIVE_FOLDER_ID = (import.meta.env.VITE_DRIVE_FOLDER_ID as string | undefined) ?? "";
 
 // One entry per tab (worksheet) of the Google Sheet. Row 1 of each tab must hold the column headers.
 export const TABS: { name: string; label: string }[] = [

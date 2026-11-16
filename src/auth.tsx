@@ -1,7 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { CLIENT_ID } from "./config";
 
-const SCOPES = "https://www.googleapis.com/auth/spreadsheets openid email profile";
+const SCOPES =
+  "https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive openid email profile";
 
 interface User {
   email: string;
